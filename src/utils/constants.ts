@@ -43,14 +43,5 @@ export const PAGES = [
     }, {
         path: 'guild-wars',
         title: 'Guild Wars'
-    }, {
-        path: 'hunts',
-        title: 'Hunts'
-    }, {
-        path: 'raids',
-        title: 'Raids'
-    }, {
-        path: 'story',
-        title: 'Story'
-    } 
+    }
 ]

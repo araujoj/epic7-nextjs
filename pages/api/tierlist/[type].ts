@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     switch (method) {
         case 'GET':
             try {
-                const request = await instance.get(`${BASE_URL}/hero/${id}`)
+                const request = await instance.get(`${BASE_URL}/hero`)
                 res.status(200).json(request.data.slice(0, 10))
             } catch (error: any) {
                 if (axios.isAxiosError(error)) {
