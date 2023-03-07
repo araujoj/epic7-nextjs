@@ -21,19 +21,20 @@ export default function Appbar(): JSX.Element {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget)
-    }
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElUser(event.currentTarget)
-    }
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null)
+    const handleNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+        if (anchorElNav) {
+            setAnchorElNav(null)
+        } else {
+            setAnchorElNav(event.currentTarget)
+        }
     }
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null)
+    const handleUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        if (anchorElUser) {
+            setAnchorElUser(null)
+        } else {
+            setAnchorElUser(event.currentTarget)
+        }
     }
 
     return (
@@ -69,7 +70,7 @@ export default function Appbar(): JSX.Element {
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
+                            onClick={handleNavMenu}
                             color="inherit"
                         >
                             <MenuIcon />
@@ -87,13 +88,13 @@ export default function Appbar(): JSX.Element {
                                 horizontal: 'left',
                             }}
                             open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
+                            onClose={handleNavMenu}
                             sx={{
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page} onClick={handleNavMenu}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
@@ -128,7 +129,7 @@ export default function Appbar(): JSX.Element {
                             <Link key={page} href={'/' + page} style={{ textDecoration: 'none' }}>
                                 <Button
                                     key={page}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={handleUserMenu}
                                     sx={{
                                         my: 2,
                                         color: 'white',
@@ -142,7 +143,7 @@ export default function Appbar(): JSX.Element {
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                            <IconButton onClick={handleUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>
@@ -160,10 +161,10 @@ export default function Appbar(): JSX.Element {
                                 horizontal: 'right',
                             }}
                             open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
+                            onClose={handleUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={handleUserMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
