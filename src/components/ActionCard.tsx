@@ -29,7 +29,7 @@ export default function ActionCard({ ...props }: ActionCardProps): JSX.Element {
     return (
         <Link href={props.url} style={{ textDecoration: 'none' }}>
             <CardBase>
-                <CardActionArea sx={{ height: '100%' }}>
+                <CardActionArea>
                     <CardContent>
                         <Typography variant="h6" sx={{ textAlign: 'center' }}>
                             {props.text}
